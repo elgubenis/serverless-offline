@@ -494,6 +494,8 @@ class Offline {
             else if (integration !== 'lambda-proxy') {
               event.stageVariables = {};
             }
+            
+            if (endpoint.handler) event.handler = endpoint.handler;
 
             debugLog('event:', event);
 
