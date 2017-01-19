@@ -387,15 +387,19 @@ class Offline {
             credentials: endpoint.cors.credentials || this.options.corsConfig.credentials,
           };
         }
+        
+        const config = {
+          cors,
+          auth: authStrategyName,
+        };
+
+        if (method !== 'GET' && method !== 'HEAD') config.payload = { maxBytes: 5242880 };
 
         // Route creation
         this.server.route({
           method: method === 'ANY' ? '*' : method,
           path: fullPath,
-          config: {
-            cors,
-            auth: authStrategyName,
-          },
+          config,
           handler: (request, reply) => { // Here we go
 
             this.printBlankLine();
