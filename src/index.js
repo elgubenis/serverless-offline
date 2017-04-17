@@ -525,7 +525,11 @@ class Offline {
               let result = data;
               let responseName = 'default';
               const responseContentType = endpoint.responseContentType;
-              const responseHeaders = endpoint.response.headers;
+
+              let responseHeaders;
+              if (endpoint.response && endpoint.response.headers) {
+                responseHeaders = endpoint.response.headers;
+              }
 
               /* RESPONSE SELECTION (among endpoint's possible responses) */
 
@@ -673,7 +677,7 @@ class Offline {
                   override: false, // Maybe a responseParameter set it already. See #34
                 });
 
-                if (responseHeaders['Set-Cookie']) {
+                if (responseHeaders && responseHeaders['Set-Cookie']) {
                   response.header('Set-cookie', data.cookie);
                 }
 
