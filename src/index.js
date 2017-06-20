@@ -266,7 +266,7 @@ class Offline {
     const serviceRuntime = this.service.provider.runtime;
     const apiKeys = this.service.provider.apiKeys;
     const protectedRoutes = [];
-    if (['nodejs', 'nodejs4.3', 'babel'].indexOf(serviceRuntime) === -1) {
+    if (['nodejs', 'nodejs4.3', 'babel', 'nodejs6.10'].indexOf(serviceRuntime) === -1) {
       this.printBlankLine();
       this.serverlessLog(`Warning: found unsupported runtime '${serviceRuntime}'`);
 
